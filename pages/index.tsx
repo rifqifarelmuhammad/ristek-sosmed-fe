@@ -16,6 +16,7 @@ const fontStyle = Roboto({
 })
 
 export default function Home() {
+  const cancelRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const router = useRouter()
   const {user} = useAuth();
   const [username, setUsername] = useState<string>()
@@ -190,8 +191,6 @@ export default function Home() {
               </div>
             </div>
 
-            {(error)?<p className='font-bold mt-2 text-yellow-500'>{message}</p>:<div></div>}
-
             <div className="flex flex-col items-center justify-center mt-5">
               <Layout />
             </div>
@@ -257,6 +256,8 @@ export default function Home() {
     <AlertDialog
         isOpen={openAlert}
         onClose={closeAlert}
+        leastDestructiveRef={cancelRef}
+        isCentered
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
