@@ -6,7 +6,7 @@ import { useAuth } from "../Authentication/authContext";
 import axios from 'axios'
 import { useRouter } from 'next/router';
 
-export default function profilePage(){
+export default function EditProfile(){
     const router = useRouter()
     const [ file, setFile ] = useState<File>()
     const { user } = useAuth()

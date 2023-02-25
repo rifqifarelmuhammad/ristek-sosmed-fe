@@ -13,7 +13,7 @@ const fontStyle = Bebas_Neue({
     subsets: ['latin'],
 })
 
-export default function profilePage(){
+export default function ProfilePage(){
     const router = useRouter()
     const {user} = useAuth();
     const [avatar, setAvatar] = useState<string>()

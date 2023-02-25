@@ -12,7 +12,7 @@ const fontStyle = Roboto({
     subsets: ['latin'],
 })
 
-export default function Home() {
+export default function RegisterAddition() {
     const router = useRouter()
     const { user, logout } = useAuth()
     const [ image, setImage ] = useState<string>()
