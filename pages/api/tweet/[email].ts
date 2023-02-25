@@ -3,7 +3,7 @@ import axios from "axios"
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const { email } = req.query;
-    axios.get(`${process.env.NEXT_PUBLIC_API}/tweet/${email}`, req.body).then((response) => {
+    axios.get(`http://localhost:8000/tweet/${email}`, req.body).then((response) => {
         res.status(200).json(response.data)
     }).catch((error) => {
         res.status(500).send(error)
