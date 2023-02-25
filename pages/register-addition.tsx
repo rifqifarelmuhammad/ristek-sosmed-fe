@@ -5,7 +5,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import styles from '../styles/registerAddition.module.css'
-import { Roboto, Inter } from '@next/font/google'
+import { Roboto } from '@next/font/google'
 
 const fontStyle = Roboto({
     weight: '400',
@@ -41,10 +41,43 @@ export default function RegisterAddition() {
 
     const onFileChange = (fileChangeEvent: any) => {
         setFile(fileChangeEvent.target.files[0])
+
         if (fileChangeEvent.target.files[0] != undefined){
-            setImage(URL.createObjectURL(fileChangeEvent.target.files[0]))
+            if (fileChangeEvent.target.files[0].name.charAt(fileChangeEvent.target.files[0].name.length-4) == '.'){
+                if (fileChangeEvent.target.files[0].name.substring(fileChangeEvent.target.files[0].name.length-3) == 'jpg' || fileChangeEvent.target.files[0].name.substring(fileChangeEvent.target.files[0].name.length-3) == 'png'){
+                    setIsError(false)
+    
+                    if (fileChangeEvent.target.files[0] != undefined){
+                        setImage(URL.createObjectURL(fileChangeEvent.target.files[0]))
+                    }else{
+                        setImage(undefined)
+                    }
+                }else{
+                    setImage(undefined)
+                    setIsError(true)
+                    setMessage('File format must be jpg, jpeg, or png')
+                }
+            }else if (fileChangeEvent.target.files[0].name.charAt(fileChangeEvent.target.files[0].name.length-5) == '.'){
+                if (fileChangeEvent.target.files[0].name.substring(fileChangeEvent.target.files[0].name.length-4) == 'jpeg'){
+                    setIsError(false)
+    
+                    if (fileChangeEvent.target.files[0] != undefined){
+                        setImage(URL.createObjectURL(fileChangeEvent.target.files[0]))
+                    }else{
+                        setImage(undefined)
+                    }
+                }else{
+                    setImage(undefined)
+                    setIsError(true)
+                    setMessage('File format must be jpg, jpeg, or png')
+                }
+            }else{
+                setImage(undefined)
+                setIsError(true)
+                setMessage('File format must be jpg, jpeg, or png')
+            }
         }else{
-            setImage(undefined)
+            setIsError(false)
         }
     }
     
@@ -53,61 +86,137 @@ export default function RegisterAddition() {
             setIsError(true)
             setMessage('Please fill the username field')
         }else{
+            setIsError(false)
             setLoading(true)
             if (file != undefined){
-                let formData = new FormData()
-                formData.append('file', file)
-                formData.append('upload_preset', 'my-uploads');
-                try{
-                    let publicId = ""
-                    let url = ""
-                    await axios.post("https://api.cloudinary.com/v1_1/decwxgqs5/image/upload", formData).then(function (response){
-                        publicId = response.data['public_id']
-                        url = response.data['secure_url']
-                    }).catch(function (err){
-                        console.log(err)
-                    })
-                    
-                    await axios.post(`api/avatar/post-avatar`, {
-                        "email": user.email,
-                        "public_id": publicId,
-                        "url": url
-                    }).catch(function (response){
-                        console.log(response)
-                    })
-                }catch (err){
-                    console.log(err)
+                if (file?.name.charAt(file?.name.length-4) == '.'){
+                    if (file?.name.substring(file?.name.length-3) == 'jpg' || file?.name.substring(file?.name.length-3) == 'png'){
+                        setIsError(false)
+
+                        let formData = new FormData()
+                        formData.append('file', file)
+                        formData.append('upload_preset', 'my-uploads');
+                        try{
+                            let publicId = ""
+                            let url = ""
+                            await axios.post("https://api.cloudinary.com/v1_1/decwxgqs5/image/upload", formData).then(function (response){
+                                publicId = response.data['public_id']
+                                url = response.data['secure_url']
+                            }).catch(function (err){
+                                console.log(err)
+                            })
+                            
+                            await axios.post(`api/avatar/post-avatar`, {
+                                "email": user.email,
+                                "public_id": publicId,
+                                "url": url
+                            }).catch(function (response){
+                                console.log(response)
+                            })
+                        }catch (err){
+                            console.log(err)
+                        }
+
+                        if (bio == undefined){
+                            axios.post(`api/authentication/post-user`, {
+                                'email': user.email,
+                                'username': username,
+                            }).then(function (response){
+                                if (response.data.status == 'error'){
+                                    setIsError(true)
+                                    setMessage('Username already in use')
+                                }else{
+                                    router.push('/')
+                                }
+                            }).catch(function (err){
+                                console.log(err)
+                            })
+                        }else{
+                            axios.post(`api/authentication/post-user`, {
+                                'email': user.email,
+                                'username': username,
+                                'bio': bio
+                            }).then(function (response){
+                                router.push('/')
+                            }).catch(function (err){
+                                console.log(err)
+                            })
+                        }
+                        setLoading(false)
+                        setIsError(false)
+                        setMessage(undefined)
+                    }else{
+                        setLoading(false)
+                        setIsError(true)
+                        setMessage('File format must be jpg, jpeg, or png')
+                    }
+                }else if (file?.name.charAt(file?.name.length-5) == '.'){
+                    if (file?.name.substring(file?.name.length-4) == 'jpeg'){
+                        setIsError(false)
+
+                        let formData = new FormData()
+                        formData.append('file', file)
+                        formData.append('upload_preset', 'my-uploads');
+                        try{
+                            let publicId = ""
+                            let url = ""
+                            await axios.post("https://api.cloudinary.com/v1_1/decwxgqs5/image/upload", formData).then(function (response){
+                                publicId = response.data['public_id']
+                                url = response.data['secure_url']
+                            }).catch(function (err){
+                                console.log(err)
+                            })
+                            
+                            await axios.post(`api/avatar/post-avatar`, {
+                                "email": user.email,
+                                "public_id": publicId,
+                                "url": url
+                            }).catch(function (response){
+                                console.log(response)
+                            })
+                        }catch (err){
+                            console.log(err)
+                        }
+
+                        if (bio == undefined){
+                            axios.post(`api/authentication/post-user`, {
+                                'email': user.email,
+                                'username': username,
+                            }).then(function (response){
+                                if (response.data.status == 'error'){
+                                    setIsError(true)
+                                    setMessage('Username already in use')
+                                }else{
+                                    router.push('/')
+                                }
+                            }).catch(function (err){
+                                console.log(err)
+                            })
+                        }else{
+                            axios.post(`api/authentication/post-user`, {
+                                'email': user.email,
+                                'username': username,
+                                'bio': bio
+                            }).then(function (response){
+                                router.push('/')
+                            }).catch(function (err){
+                                console.log(err)
+                            })
+                        }
+                        setLoading(false)
+                        setIsError(false)
+                        setMessage(undefined)
+                    }else{
+                        setLoading(false)
+                        setIsError(true)
+                        setMessage('File format must be jpg, jpeg, or png')
+                    }
+                }else{
+                    setLoading(false)
+                    setIsError(true)
+                    setMessage('File format must be jpg, jpeg, or png')
                 }
             }
-            
-            if (bio == undefined){
-                axios.post(`api/authentication/post-user`, {
-                    'email': user.email,
-                    'username': username,
-                }).then(function (response){
-                    if (response.data.status == 'error'){
-                        setIsError(true)
-                        setMessage('Username already in use')
-                    }else{
-                        router.push('/')
-                    }
-                }).catch(function (err){
-                    console.log(err)
-                })
-            }else{
-                axios.post(`api/authentication/post-user`, {
-                    'email': user.email,
-                    'username': username,
-                    'bio': bio
-                }).then(function (response){
-                    router.push('/')
-                }).catch(function (err){
-                    console.log(err)
-                })
-            }
-            setLoading(false)
-            setIsError(false)
-            setMessage(undefined)
         }
     }
     

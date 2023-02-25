@@ -40,10 +40,43 @@ export default function EditProfile(){
 
     const onFileChange = (fileChangeEvent: any) => {
         setFile(fileChangeEvent.target.files[0])
+
         if (fileChangeEvent.target.files[0] != undefined){
-            setImage(URL.createObjectURL(fileChangeEvent.target.files[0]))
+            if (fileChangeEvent.target.files[0].name.charAt(fileChangeEvent.target.files[0].name.length-4) == '.'){
+                if (fileChangeEvent.target.files[0].name.substring(fileChangeEvent.target.files[0].name.length-3) == 'jpg' || fileChangeEvent.target.files[0].name.substring(fileChangeEvent.target.files[0].name.length-3) == 'png'){
+                    setInvalid(false)
+    
+                    if (fileChangeEvent.target.files[0] != undefined){
+                        setImage(URL.createObjectURL(fileChangeEvent.target.files[0]))
+                    }else{
+                        setImage(undefined)
+                    }
+                }else{
+                    setImage(undefined)
+                    setInvalid(true)
+                    setMessage('File format must be jpg, jpeg, or png')
+                }
+            }else if (fileChangeEvent.target.files[0].name.charAt(fileChangeEvent.target.files[0].name.length-5) == '.'){
+                if (fileChangeEvent.target.files[0].name.substring(fileChangeEvent.target.files[0].name.length-4) == 'jpeg'){
+                    setInvalid(false)
+    
+                    if (fileChangeEvent.target.files[0] != undefined){
+                        setImage(URL.createObjectURL(fileChangeEvent.target.files[0]))
+                    }else{
+                        setImage(undefined)
+                    }
+                }else{
+                    setImage(undefined)
+                    setInvalid(true)
+                    setMessage('File format must be jpg, jpeg, or png')
+                }
+            }else{
+                setImage(undefined)
+                setInvalid(true)
+                setMessage('File format must be jpg, jpeg, or png')
+            }
         }else{
-            setImage(undefined)
+            setInvalid(false)
         }
     }
 
@@ -57,53 +90,118 @@ export default function EditProfile(){
             setLoading(true)
     
             if (file != undefined){
-                let formData = new FormData()
-                formData.append('file', file)
-                formData.append('upload_preset', 'my-uploads');
-                try{
-                    let publicId = ""
-                    let url = ""
-                    await axios.post("https://api.cloudinary.com/v1_1/decwxgqs5/image/upload", formData).then(function (response){
-                        publicId = response.data['public_id']
-                        url = response.data['secure_url']
-                    }).catch(function (err){
-                        console.log(err)
-                    })
-    
-                    if (avatar != ''){
-                        await axios.patch(`api/avatar/update-avatar/${user.email}`, {
-                            "public_id": publicId,
-                            "url": url
-                        }).catch(function (response){
-                            console.log(response)
-                        })
+                if (file?.name.charAt(file?.name.length-4) == '.'){
+                    if (file?.name.substring(file?.name.length-3) == 'jpg' || file?.name.substring(file?.name.length-3) == 'png'){
+                        let formData = new FormData()
+                        formData.append('file', file)
+                        formData.append('upload_preset', 'my-uploads');
+                        try{
+                            let publicId = ""
+                            let url = ""
+                            await axios.post("https://api.cloudinary.com/v1_1/decwxgqs5/image/upload", formData).then(function (response){
+                                publicId = response.data['public_id']
+                                url = response.data['secure_url']
+                            }).catch(function (err){
+                                console.log(err)
+                            })
+            
+                            if (avatar != ''){
+                                await axios.patch(`api/avatar/update-avatar/${user.email}`, {
+                                    "public_id": publicId,
+                                    "url": url
+                                }).catch(function (response){
+                                    console.log(response)
+                                })
+                            }else{
+                                await axios.post(`api/avatar/post-avatar`, {
+                                    "email": user.email,
+                                    "public_id": publicId,
+                                    "url": url
+                                }).catch(function (response){
+                                    console.log(response)
+                                })
+                            }
+                            
+                        }catch (err){
+                            console.log(err)
+                        }
+
+                        if (bio != undefined){
+                            await axios.patch(`api/authentication/update-user/${user.email}`, {
+                                'bio': bio
+                            }).then(function (response){
+                                setBio(undefined)
+                            }).catch(function (response){
+                                console.log(response)
+                            })
+                        }
+                
+                        setLoading(false)
+                        router.push('/profile-page')
                     }else{
-                        await axios.post(`api/avatar/post-avatar`, {
-                            "email": user.email,
-                            "public_id": publicId,
-                            "url": url
-                        }).catch(function (response){
-                            console.log(response)
-                        })
+                        setLoading(false)
+                        setInvalid(true)
+                        setMessage('File format must be jpg, jpeg, or png')
                     }
-                    
-                }catch (err){
-                    console.log(err)
+                }else if (file?.name.charAt(file?.name.length-5) == '.'){
+                    if (file?.name.substring(file?.name.length-4) == 'jpeg'){
+                        let formData = new FormData()
+                        formData.append('file', file)
+                        formData.append('upload_preset', 'my-uploads');
+                        try{
+                            let publicId = ""
+                            let url = ""
+                            await axios.post("https://api.cloudinary.com/v1_1/decwxgqs5/image/upload", formData).then(function (response){
+                                publicId = response.data['public_id']
+                                url = response.data['secure_url']
+                            }).catch(function (err){
+                                console.log(err)
+                            })
+            
+                            if (avatar != ''){
+                                await axios.patch(`api/avatar/update-avatar/${user.email}`, {
+                                    "public_id": publicId,
+                                    "url": url
+                                }).catch(function (response){
+                                    console.log(response)
+                                })
+                            }else{
+                                await axios.post(`api/avatar/post-avatar`, {
+                                    "email": user.email,
+                                    "public_id": publicId,
+                                    "url": url
+                                }).catch(function (response){
+                                    console.log(response)
+                                })
+                            }
+                            
+                        }catch (err){
+                            console.log(err)
+                        }
+
+                        if (bio != undefined){
+                            await axios.patch(`api/authentication/update-user/${user.email}`, {
+                                'bio': bio
+                            }).then(function (response){
+                                setBio(undefined)
+                            }).catch(function (response){
+                                console.log(response)
+                            })
+                        }
+                
+                        setLoading(false)
+                        router.push('/profile-page')
+                    }else{
+                        setLoading(false)
+                        setInvalid(true)
+                        setMessage('File format must be jpg, jpeg, or png')
+                    }
+                }else{
+                    setLoading(false)
+                    setInvalid(true)
+                    setMessage('File format must be jpg, jpeg, or png')
                 }
             }
-    
-            if (bio != undefined){
-                await axios.patch(`api/authentication/update-user/${user.email}`, {
-                    'bio': bio
-                }).then(function (response){
-                    setBio(undefined)
-                }).catch(function (response){
-                    console.log(response)
-                })
-            }
-    
-            setLoading(false)
-            router.push('/profile-page')
         }else{
             setInvalid(true)
             setMessage('Please fill the field')
