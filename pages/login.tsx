@@ -39,15 +39,15 @@ export default function Login() {
             setMessage(undefined)
         } catch (err) {
             setIsError(true)
-            if (err.code == 'auth/invalid-email'){
+            if (String(err) == 'FirebaseError: Firebase: Error (auth/invalid-email).'){
                 setMessage('Invalid email')
-            }else if (err.code == 'auth/user-not-found'){
+            }else if (String(err) == 'FirebaseError: Firebase: Error (auth/user-not-found).'){
                 setMessage('User not found')
-            }else if (err.code == 'auth/wrong-password'){
+            }else if (String(err) == 'FirebaseError: Firebase: Error (auth/wrong-password).'){
                 setMessage('Wrong password')
             }
             else{
-                console.log(err.code)
+                console.log(String(err))
             }
             
             setData({

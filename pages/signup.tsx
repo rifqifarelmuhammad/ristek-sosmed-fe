@@ -31,13 +31,14 @@ export default function Signup() {
                 ...data,
                 password:''
             })
-
-            if (err.code == 'auth/invalid-email'){
+            
+            if (String(err) == 'FirebaseError: Firebase: Error (auth/invalid-email).'){
                 setMessage('Invalid Email')
-            }else if (err.code == 'auth/email-already-in-use'){
+            }else if (String(err) == 'FirebaseError: Firebase: Error (auth/email-already-in-use).'){
                 setMessage('Email already in use')
-            }else if (err.code == 'auth/weak-password'){
-                setMessage('Weak password')
+            }else if (String(err) == 'FirebaseError: Firebase: Password should be at least 6 characters (auth/weak-password).'){
+                console.log('masuk kok')
+                setMessage('Password should be at least 6 characters')
             }
         }
     }
