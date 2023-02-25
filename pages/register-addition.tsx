@@ -216,6 +216,32 @@ export default function RegisterAddition() {
                     setIsError(true)
                     setMessage('File format must be jpg, jpeg, or png')
                 }
+            }else{
+                if (bio == undefined){
+                    axios.post(`api/authentication/post-user`, {
+                        'email': user.email,
+                        'username': username,
+                    }).then(function (response){
+                        if (response.data.status == 'error'){
+                            setIsError(true)
+                            setMessage('Username already in use')
+                        }else{
+                            router.push('/')
+                        }
+                    }).catch(function (err){
+                        console.log(err)
+                    })
+                }else{
+                    axios.post(`api/authentication/post-user`, {
+                        'email': user.email,
+                        'username': username,
+                        'bio': bio
+                    }).then(function (response){
+                        router.push('/')
+                    }).catch(function (err){
+                        console.log(err)
+                    })
+                }
             }
         }
     }

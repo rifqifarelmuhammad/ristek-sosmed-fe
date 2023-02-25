@@ -201,6 +201,19 @@ export default function EditProfile(){
                     setInvalid(true)
                     setMessage('File format must be jpg, jpeg, or png')
                 }
+            }else{
+                if (bio != undefined){
+                    await axios.patch(`api/authentication/update-user/${user.email}`, {
+                        'bio': bio
+                    }).then(function (response){
+                        setBio(undefined)
+                    }).catch(function (response){
+                        console.log(response)
+                    })
+                }
+        
+                setLoading(false)
+                router.push('/profile-page')
             }
         }else{
             setInvalid(true)
