@@ -16,3 +16,6 @@ or
 
 ## Author
 Rifqi Farel Muhammad [https://github.com/rifqifarelmuhammad]
+
+## License
+[MIT](https://github.com/rifqifarelmuhammad/ristek-sosmed-fe/blob/main/LICENSE.txt)
