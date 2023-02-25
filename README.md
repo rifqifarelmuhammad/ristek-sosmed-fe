@@ -2,8 +2,7 @@
 Ristek SosMed is a simple social media, like twitter. This web contains CRUD data and CRUD file (image). You can CRUD tweet, CRUD Image for avatar, add friend, add close friend, and set visibility your tweet.
 
 ## Technologies/Tools
-- Nest JS (Backend)
-- Postgres (Database)
+- Next JS (Frontend)
 
 ## How to Install and Run the Program
 1. Clone this repository to your PC
