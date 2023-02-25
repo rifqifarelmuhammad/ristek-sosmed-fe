@@ -1,5 +1,5 @@
-# Ristek SosMed Backend
-Ristek SosMed is a simple social media, like twitter. This web contains CRUD data and CRUD file (image). You can CRUD tweet, CRUD Image for avatar, add friend, add close friend, and set visibility your tweet.
+# Ristek SosMed Frontend
+Ristek SosMed is a simple social media, like twitter. This web contains CRUD data and CRUD file (image). You can CRUD tweet, CRUD Image for avatar, add friend, add close friend, and set visibility to your tweet.
 
 ## Technologies/Tools
 - Next JS (Frontend)
