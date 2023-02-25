@@ -1,0 +1,13 @@
+.frame{
+    background-color: #01162D;
+    font-family: 'Roboto';
+    font-style: normal;
+}
+
+.avatar{
+    border-radius: 27.4053px;
+    max-width: 54.81px;
+    min-width: 54.81px;
+    max-height: 54.83px;
+    min-height: 54.83px;
+}

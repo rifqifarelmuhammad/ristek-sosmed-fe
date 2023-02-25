@@ -1,0 +1,109 @@
+.pageFrame{
+    background-color: #01162D;
+    margin: auto;
+    width: 100%;
+}
+
+@media (min-width: 320px){
+    .descriptionText{
+        margin-top: 12.5px;
+        width: 320px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 300px;
+        font-size: 20px;
+
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    .profileFrame{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        gap: 5px;
+    }
+    
+    .avatarFrame{
+        max-width: 45px;
+        min-width: 45px;
+        max-height: 45px;
+        min-height: 45px;
+        border-radius: 45px;
+    }
+    
+    .usernameText{
+        font-style: normal;
+        font-weight: 600px;
+        font-size: 30px;
+        color: #88BFE8;
+    }
+}
+
+@media (min-width: 640px){
+    .descriptionText{
+        margin-top: 12.5px;
+        width: 500px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 300px;
+        font-size: 20px;
+
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    .profileFrame{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        gap: 10px;
+    }
+    
+    .avatarFrame{
+        max-width: 75px;
+        min-width: 75px;
+        max-height: 75px;
+        min-height: 75px;
+        border-radius: 53.5px;
+    }
+    
+    .usernameText{
+        font-style: normal;
+        font-weight: 600px;
+        font-size: 42.5px;
+        color: #88BFE8;
+    }
+}
+
+@media (min-width: 768px){
+    .descriptionText{
+        margin-top: 12.5px;
+        width: 650px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 300px;
+        font-size: 20px;
+
+        color: #FFFFFF;
+        text-align: center;
+    }
+}
+
+@media (min-width: 1024px){
+    .descriptionText{
+        margin-bottom: 12.5px;
+        width: 900px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 300px;
+        font-size: 20px;
+
+        color: #FFFFFF;
+        text-align: center;
+    }
+}

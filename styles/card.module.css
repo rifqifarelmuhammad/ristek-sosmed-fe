@@ -1,0 +1,217 @@
+@media (min-width: 320px){
+    .card{
+        margin-top: 15px;
+        width: 300px;
+        height: 250px;
+    
+        background: linear-gradient(180deg, #213356 0%, #0C182F 100%);
+        box-shadow: 6.39689px 6.39689px 19.1907px #1D2E4E;
+        border-radius: 25.5876px;
+    }
+
+    .avatar{
+        margin-top: 1px;
+        border-radius: 25px;
+        max-width: 25px;
+        min-width: 25px;
+        max-height: 25px;
+        min-height: 25px;
+    }
+    
+    .textUsername{
+        width: 62.5px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 11px;
+        color: #FFFFFF;
+    }
+    
+    .textDate{
+        margin-top: 1.5px;
+        width: 45px;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 7px;
+        color: #FFFFFF;
+    }
+    
+    .textCF{
+        margin-top: 1.5px;
+        width: 50px;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 7px;
+        color: rgb(245 158 11);
+    }
+    
+    
+    .editIcon{
+        position: absolute;
+        left: 82.5%;
+        top: 11%;
+        bottom: 12.5%;
+        max-width: 21px;
+        max-height: 18px;
+    }
+    
+    .deleteIcon{
+        position: absolute;
+        left: 92%;
+        top: 11%;
+        bottom: 12.5%;
+        max-width: 14.18px;
+        max-height: 13px;
+    }
+    
+    .textTweet{
+        font-style: normal;
+        font-weight: 100;
+        font-size: 12px;
+        line-height: 120%;
+        color: #FFFFFF;
+    }
+}
+
+@media (min-width: 640px){
+    .card{
+        margin-top: 15px;
+        width: 500px;
+        height: 250px;
+    
+        background: linear-gradient(180deg, #213356 0%, #0C182F 100%);
+        box-shadow: 6.39689px 6.39689px 19.1907px #1D2E4E;
+        border-radius: 25.5876px;
+    }
+
+    .avatar{
+        margin-top: 1px;
+        border-radius: 27.4053px;
+        max-width: 42.66px;
+        min-width: 42.66px;
+        max-height: 42.67px;
+        min-height: 42.67px;
+    }
+    
+    .textUsername{
+        width: 122.5px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17px;
+        color: #FFFFFF;
+    }
+    
+    .textDate{
+        margin-top: 4.5px;
+        width: 80px;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 11px;
+    
+        color: #FFFFFF;
+    }
+    
+    .textCF{
+        margin-top: 6px;
+        width: 100px;
+        height: 18px;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 11px;
+        color: rgb(245 158 11);
+    }
+    
+    
+    .editIcon{
+        position: absolute;
+        left: 87%;
+        top: 14%;
+        bottom: 12.5%;
+    }
+    
+    .deleteIcon{
+        position: absolute;
+        left: 93%;
+        top: 13.75%;
+        bottom: 12.5%;
+    }
+    
+    .textTweet{
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 120%;
+        color: #FFFFFF;
+    }
+}
+
+@media (min-width: 768px){
+    .card{
+        margin-top: 15px;
+        width: 550px;
+        height: 250px;
+    
+        background: linear-gradient(180deg, #213356 0%, #0C182F 100%);
+        box-shadow: 6.39689px 6.39689px 19.1907px #1D2E4E;
+        border-radius: 25.5876px;
+    }
+
+    .avatar{
+        margin-top: 1px;
+        border-radius: 27.4053px;
+        max-width: 42.66px;
+        min-width: 42.66px;
+        max-height: 42.67px;
+        min-height: 42.67px;
+    }
+    
+    .textUsername{
+        width: 140px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        color: #FFFFFF;
+    }
+    
+    .textDate{
+        margin-top: 2px;
+        width: 90px;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+    
+        color: #FFFFFF;
+    }
+    
+    .textCF{
+        margin-top: 2px;
+        width: 100px;
+        height: 18px;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        color: rgb(245 158 11);
+    }
+    
+    
+    .editIcon{
+        position: absolute;
+        left: 87%;
+        top: 14%;
+        bottom: 12.5%;
+    }
+    
+    .deleteIcon{
+        position: absolute;
+        left: 93%;
+        top: 13.75%;
+        bottom: 12.5%;
+    }
+    
+    .textTweet{
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 120%;
+        color: #FFFFFF;
+    }
+}
